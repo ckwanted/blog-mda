@@ -58,7 +58,7 @@ return [
             'database'  => env('DB_DATABASE', 'forge'),
             'username'  => env('DB_USERNAME', 'forge'),
             'password'  => env('DB_PASSWORD', ''),
-            'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock', // QUITAR SI NO ESTAS EN UN MAC
+            //'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock', // QUITAR SI NO ESTAS EN UN MAC
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
