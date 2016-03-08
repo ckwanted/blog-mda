@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('app');
 });
+Route::resource('roles','RoleController');
+Route::resource('permissions','PermissionController', ['only' => ['index', 'edit', 'update']]);
