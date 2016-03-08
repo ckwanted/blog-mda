@@ -12,6 +12,14 @@
 */
 
 Route::get('/', function () {
+	/*$data_config = config('permissions.tables');
+
+    	foreach ($data_config as $table => $action) {
+    		foreach ($action as $value) {
+    			echo "\n".$value.'.'.str_singular($table);
+    		}
+    		
+    	}*/
     return view('app');
 });
 Route::resource('roles','RoleController');
