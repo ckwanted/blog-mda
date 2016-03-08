@@ -10,8 +10,10 @@
 <body>
 
     <div class="container">
-        <h1>Blog MDA</h1>
+        <h1 class="text-center">Blog MDA</h1>
     </div>
+
+    @yield('body', '')
 
     @include('partials.scripts')
 </body>
