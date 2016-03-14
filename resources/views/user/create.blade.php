@@ -1,13 +1,13 @@
 @extends('app')
 
-@section('body')
+@section('content')
 
     <div class="container">
 
         <h2>Crear Usuario:</h2>
         <hr/>
 
-        <form action="{{route('admin.user.store')}}" method="POST">
+        <form action="{{route('admin.users.store')}}" method="POST">
 
             <div class="form-group">
                 <label for="store_name">Nombre:</label>

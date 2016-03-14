@@ -1,13 +1,13 @@
 @extends('app')
 
-@section('body')
+@section('content')
 
     <div class="container">
 
         <h2>Editar Usuario: {{$user->name}}</h2>
         <hr/>
 
-        <form action="{{route('admin.user.update', $user->id)}}" method="POST">
+        <form action="{{route('admin.users.update', $user->id)}}" method="POST">
 
             <div class="form-group">
                 <label for="store_name">Nombre:</label>
