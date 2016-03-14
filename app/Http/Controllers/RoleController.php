@@ -12,6 +12,14 @@ use App\Http\Controllers\Controller;
 class RoleController extends Controller
 {
     /**
+     * RoleController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
