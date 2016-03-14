@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
+use App\Permission;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -9,6 +11,14 @@ use App\Http\Controllers\Controller;
 
 class RoleController extends Controller
 {
+    /**
+     * RoleController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +36,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+       $permissions = Permission::all();
+        return view('roles.create', compact('permissions'));
     }
 
     /**
@@ -37,7 +48,10 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $role = Role::create($request->all());
+        $role->permissions()->attach($request->permission);
+
     }
 
     /**
