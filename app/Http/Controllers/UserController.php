@@ -12,7 +12,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        dd("index");
+        $users = User::all();
+        return view('user.index',compact('users'));
     }
 
     public function create()
@@ -25,7 +26,7 @@ class UserController extends Controller
         $user = User::create($request->all());
         $user->password = bcrypt($request->password);
         $user->save();
-        dd("usuario creado correctamente ...");
+        return redirect()->route('admin.users.index');
     }
 
     public function show($id)
@@ -47,11 +48,13 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
         $user->role_id = $request->role_id;
         $user->save();
-        dd("usuario editado correctamente ...");
+        return redirect()->back();
     }
 
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->back();
     }
 }
