@@ -14,10 +14,15 @@ class RoleController extends Controller
     /**
      * RoleController constructor.
      */
-    public function __construct()
+    /**public function __construct()
     {
+<<<<<<< HEAD
         //$this->middleware('auth');
     }
+=======
+        $this->middleware('auth');
+    }*/
+>>>>>>> 85db30b195d92025be1e2dd28daafecb21d44ce3
 
     /**
      * Display a listing of the resource.
@@ -51,19 +56,10 @@ class RoleController extends Controller
 
         $role = Role::create($request->all());
         $role->permissions()->attach($request->permission);
+        return redirect('admin/roles/create')->with('message', 'Rol añadido correctamente');
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -73,7 +69,9 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $permissions = Permission::all();
+        $role = Role::findOrFail($id);
+        return view('roles.edit', compact('permissions', 'role'));
     }
 
     /**

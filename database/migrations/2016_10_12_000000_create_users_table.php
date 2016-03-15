@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('password', 60);
             $table->integer('role_id')->unsigned();
             $table->string('photo');
-            //$table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('role_id')->references('id')->on('roles');
             $table->rememberToken();
             $table->timestamps();
         });
