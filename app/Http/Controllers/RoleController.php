@@ -64,7 +64,9 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-
+        $permissions = Permission::all();
+        $role = Role::findOrFail($id);
+        return view('roles.edit', compact('permissions', 'role'));
     }
 
     /**
