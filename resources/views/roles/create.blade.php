@@ -3,6 +3,8 @@
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <h4 class="section-heading">Añadir Rol</h4>
+
+            @include('partials.messages')
             <form action="{{route('admin.roles.store')}}" method="post" id="contactForm">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <div class="row control-group">
