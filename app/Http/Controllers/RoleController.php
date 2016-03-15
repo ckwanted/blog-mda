@@ -11,18 +11,11 @@ use App\Http\Controllers\Controller;
 
 class RoleController extends Controller
 {
-    /**
-     * RoleController constructor.
-     */
-    /**public function __construct()
+    public function __construct()
     {
-<<<<<<< HEAD
+
         //$this->middleware('auth');
     }
-=======
-        $this->middleware('auth');
-    }*/
->>>>>>> 85db30b195d92025be1e2dd28daafecb21d44ce3
 
     /**
      * Display a listing of the resource.
