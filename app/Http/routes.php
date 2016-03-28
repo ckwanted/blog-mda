@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return "Página en construccion";
+    return view('app');
 });
 
 Route::group(['prefix' => 'admin'], function () {
