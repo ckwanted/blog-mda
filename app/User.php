@@ -11,6 +11,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 use App\Role;
+use App\Permission;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -43,5 +44,31 @@ class User extends Model implements AuthenticatableContract,
         
         return $this->belongsTo(Role::class, 'role_id');
     }
+
+    /**
+     * Determine if the user has the given role.
+     *
+     * @param  mixed $role
+     * @return boolean
+     */
+    public function hasRole($role)
+    {
+        if (is_string($role)) {
+            return $this->roles->contains('slug', $role);
+        }
+
+        return !! $role->intersect($this->roles)->count();
+    }
+
+    /**
+     * Determine if the user may perform the given permission.
+     *
+     * @param  Permission $permission
+     * @return boolean
+     */
+    /*public function hasPermission(Permission $permission)
+    {
+        return $this->hasRole($permission->roles);
+    }*/
 
 }
