@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Role;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -10,34 +11,44 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+
+    public function __construct() {
+        
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $users = User::all();
-        return view('user.index',compact('users'));
+        return view('users.index',compact('users'));
     }
 
     public function create()
     {
-        return view('user.create');
+        $roles = Role::orderBy('name', 'asc')->lists('name', 'id');
+
+        return view('users.create', compact('roles'));
     }
 
     public function store(Request $request)
     {
-        $user = User::create($request->all());
-        $user->password = bcrypt($request->password);
-        $user->save();
-        return redirect()->route('admin.users.index');
-    }
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role_id' => $request->role_id,
+        ]);
 
-    public function show($id)
-    {
-        dd("Show $id");
+        return redirect('admin/users/create')->with('message', 'Usuario añadido correctamente');
     }
 
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('user.edit', compact('user'));
+        $user = User::findOrFail($id);
+
+        $roles = Role::orderBy('name', 'asc')->lists('name', 'id');
+
+        return view('users.edit', compact('user', 'roles'));
     }
 
     public function update(Request $request, $id)
@@ -48,13 +59,13 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
         $user->role_id = $request->role_id;
         $user->save();
-        return redirect()->back();
+        return redirect('/admin/users');
     }
 
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
-        return redirect()->back();
+        User::destroy($id);
+
+        return redirect('/admin/users');
     }
 }

@@ -43,6 +43,28 @@ class PermissionTableSeeder extends Seeder
     }
 
     /**
+     * Agrega el role de administrador a la BD
+     *
+     * @return void
+     */
+    private function addRole()
+    {
+        DB::table('roles')->insert([
+            'slug' => 'admin', 
+            'name' => 'Administrador', 
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        for($i=1; $i <= 10; $i++){
+            DB::table('permission_role')->insert([
+            'permission_id' => $i, 
+            'role_id' => 1, 
+            ]);
+        }
+    }
+
+    /**
      * Run the database seeds.
      *
      * @return void
@@ -56,5 +78,7 @@ class PermissionTableSeeder extends Seeder
 	    		$this->addPermission($table, $value);
     		}
     	}
+
+        $this->addRole();
     }
 }
