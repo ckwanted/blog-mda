@@ -32,7 +32,11 @@
                         @foreach($roles as $role)
                             <tr>
                                 <td>{{ $role->name }}</td>
-                                <td>{{ $role->email }}</td>
+                                <td>
+                                @foreach($role->permissions as $permission)
+                                    <li>{{ $permission->name }}</li>
+                                @endforeach
+                                </td>
                                 <td>
 
                                     <a href="{{ url('admin/roles/'. $role->id . '/edit') }}"
