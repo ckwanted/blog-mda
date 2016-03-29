@@ -16,7 +16,11 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="{{ url('admin/login') }}">Login</a>
+                    	@if(Auth::user())
+                        	<a href="{{ url('admin/users') }}">Dashboard</a>
+                    	@else
+                        	<a href="{{ url('admin/login') }}">Login</a>
+                        @endif
                     </li>
                 </ul>
             </div>
