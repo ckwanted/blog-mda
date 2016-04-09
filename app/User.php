@@ -45,6 +45,11 @@ class User extends Model implements AuthenticatableContract,
         return $this->belongsTo(Role::class, 'role_id');
     }
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
     /**
      * Determine if the user has the given role.
      *
@@ -59,16 +64,4 @@ class User extends Model implements AuthenticatableContract,
 
         return !! $role->intersect($this->roles)->count();
     }
-
-    /**
-     * Determine if the user may perform the given permission.
-     *
-     * @param  Permission $permission
-     * @return boolean
-     */
-    /*public function hasPermission(Permission $permission)
-    {
-        return $this->hasRole($permission->roles);
-    }*/
-
 }
