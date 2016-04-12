@@ -28,4 +28,5 @@ Route::group(['prefix' => 'admin'], function () {
 
 });
 Route::resource('articles','ArticleController');
+Route::post('comments/article/{id}', 'ArticleController@addComment');
 

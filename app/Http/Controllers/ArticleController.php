@@ -46,9 +46,19 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $article = Article::create($request->all());
+
         //$article->tags()->sync($request->input('tag_list'));
-        $article->user()->id = auth()->user()->id;
+
+        $article->update(['user_id' => auth()->user()->id]);
+
         return redirect('articles/create')->with('message', 'Artículo añadido correctamente');
+    }
+
+    public function addComment($id, Request $request)
+    {
+        $article = Article::findOrFail($id);
+
+        $article->assignComment($request->all());
     }
 
     /**
