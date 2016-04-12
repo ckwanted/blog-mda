@@ -29,3 +29,10 @@ $factory->define(App\Article::class, function (Faker\Generator $faker) {
         'image' => 'photo.jpg',        
     ];
 });
+
+$factory->define(App\Comment::class, function (Faker\Generator $faker) {
+    return [
+        'username' => $faker->name,
+        'body' => $faker->paragraph,        
+    ];
+});

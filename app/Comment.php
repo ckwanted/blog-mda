@@ -12,4 +12,11 @@ class Comment extends Model
     {
     	return $this->belongsTo(Article::class, 'article_id');
     }
+
+    public function assignToArticle($id)
+    {
+    	$article = Article::find($id);
+
+    	$this->article()->associate($article);
+    }
 }
