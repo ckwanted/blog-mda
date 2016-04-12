@@ -25,6 +25,7 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Email</th>
+                            <th>Rol</th>
                             <th>Acciones</th>
                         </tr>
                         </thead>
@@ -33,6 +34,7 @@
                             <tr>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
+                                <td>{{ $user->roles->name }}</td>
                                 <td>
 
                                         <a href="{{ url('admin/users/'. $user->id . '/edit') }}"
