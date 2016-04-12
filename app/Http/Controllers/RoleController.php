@@ -26,7 +26,11 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::all();
+        return view('roles.index', compact('roles'));
+
+
+        //return view($role);
     }
 
     /**
@@ -62,7 +66,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -96,6 +100,8 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::find($id);
+        $role->delete();
+        //return Redirect::route('items.index');
     }
 }
