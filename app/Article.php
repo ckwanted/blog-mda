@@ -17,4 +17,9 @@ class Article extends Model
     {
     	return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function assignComment(array $comment)
+    {
+        $this->comments()->create($comment);
+    }
 }

@@ -3,18 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Article;
+
+use App\Comment;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Auth;
 
-class ArticleController extends Controller
+class CommentController extends Controller
 {
-
-    public function __construct() {
-
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -25,18 +20,7 @@ class ArticleController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //$tags = Tag::lists('name', 'id');
-        $tags =['hola', 'adiós'];
-        return view('articles.create', compact('tags'));
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -45,10 +29,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $article = Article::create($request->all());
-        //$article->tags()->sync($request->input('tag_list'));
-        $article->user()->id = auth()->user()->id;
-        return redirect('articles/create')->with('message', 'Artículo añadido correctamente');
+        
     }
 
     /**
