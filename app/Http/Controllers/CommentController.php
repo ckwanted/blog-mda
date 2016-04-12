@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Comment;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class CommentController extends Controller
 {
@@ -20,10 +19,7 @@ class CommentController extends Controller
         //
     }
 
-    public function test()
-    {
-        return view('comments.form');
-    }
+    
     /**
      * Remove the specified resource from storage.
      *

@@ -15,7 +15,9 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call(PermissionTableSeeder::class);
-        factory(App\User::class, 1)->create();
+        factory(App\User::class)->create();
+        factory(App\Article::class, 2)->create();
+        factory(App\Comment::class, 3)->create();
 
         Model::reguard();
     }

@@ -58,7 +58,8 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
 
-        $article->assignComment($request->all());
+        return $article->assignComment($request->all());
+        
     }
 
     /**

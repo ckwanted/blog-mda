@@ -32,6 +32,7 @@ $factory->define(App\Article::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Comment::class, function (Faker\Generator $faker) {
     return [
+        'article_id' => 1,
         'username' => $faker->name,
         'body' => $faker->paragraph,        
     ];

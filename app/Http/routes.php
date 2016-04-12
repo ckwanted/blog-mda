@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-	
+
     return view('app');
 });
 
@@ -28,6 +28,6 @@ Route::group(['prefix' => 'admin'], function () {
 
 });
 Route::resource('articles','ArticleController');
-Route::post('comments/article/{id}', 'ArticleController@addComment');
+Route::post('articles/{id}/comment', 'ArticleController@addComment');
 Route::get('comments', 'CommentController@test');
 
