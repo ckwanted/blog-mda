@@ -25,5 +25,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('roles','RoleController');
 	Route::resource('permissions','PermissionController', ['only' => ['index', 'edit', 'update']]);
     Route::resource('users','UserController');
+
 });
+Route::resource('articles','ArticleController');
 
