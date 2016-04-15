@@ -30,4 +30,4 @@ Route::group(['prefix' => 'admin'], function () {
 Route::resource('articles','ArticleController');
 Route::post('articles/{id}/comment', 'ArticleController@addComment');
 Route::get('comments', 'CommentController@test');
-
+Route::post('tag', 'TagController@store');

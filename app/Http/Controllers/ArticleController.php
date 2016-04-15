@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
 use Illuminate\Http\Request;
 use App\Article;
 use App\Http\Requests;
@@ -32,8 +33,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //$tags = Tag::lists('name', 'id');
-        $tags =['hola', 'adiós'];
+        $tags = Tag::all();
         return view('articles.create', compact('tags'));
     }
 
@@ -45,9 +45,10 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+
         $article = Article::create($request->all());
 
-        //$article->tags()->sync($request->input('tag_list'));
+        if($request->tag_list) $article->tags()->sync($request->input('tag_list'));
 
         $article->update(['user_id' => auth()->user()->id]);
 

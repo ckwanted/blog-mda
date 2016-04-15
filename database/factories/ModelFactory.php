@@ -37,3 +37,9 @@ $factory->define(App\Comment::class, function (Faker\Generator $faker) {
         'body' => $faker->paragraph,        
     ];
 });
+
+$factory->define(App\Tag::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->city
+    ];
+});
