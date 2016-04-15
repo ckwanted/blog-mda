@@ -19,15 +19,20 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin'], function () {
 
+	Route::get('dashboard', function () {
+
+    return view('partials.dashboard');
+	});
+
 	Route::get('login', 'Auth\AuthController@getLogin');
 	Route::post('login', 'Auth\AuthController@postLogin');
 	Route::get('logout', 'Auth\AuthController@getLogout');
     Route::resource('roles','RoleController');
 	Route::resource('permissions','PermissionController', ['only' => ['index', 'edit', 'update']]);
     Route::resource('users','UserController');
+	Route::resource('articles','ArticleController');
+	Route::post('tag', 'TagController@store');
 
 });
-Route::resource('articles','ArticleController');
 Route::post('articles/{id}/comment', 'ArticleController@addComment');
 Route::get('comments', 'CommentController@test');
-Route::post('tag', 'TagController@store');

@@ -9,11 +9,15 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
+      @if(Auth::user()->roles->name == 'Editor')
         <li><a href="{{ url('admin/articles') }}">Artículos</a></li>
-        <li><a href="{{ url('admin/commensts') }}">Comentarios</a></li>
+        <li><a href="{{ url('admin/tags') }}">Etiquetas</a></li>
+        <li><a href="{{ url('admin/comments') }}">Comentarios</a></li>
+      @else
         <li><a href="{{ url('admin/users') }}">Usuarios</a></li>
         <li><a href="{{ url('admin/roles') }}">Roles</a></li>
         <li><a href="{{ url('admin/permissions') }}">Permisos</a></li>
+      @endif
       </ul>
       
       <ul class="nav navbar-nav navbar-right">

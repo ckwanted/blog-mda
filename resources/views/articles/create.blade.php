@@ -4,7 +4,7 @@
         <div class="col-md-offset-3 col-md-6">
             <h4 class="section-heading">Añadir Artículo</h4>
             @include('partials.messages')
-            {!! Form::open(array('route' => 'articles.store', 'id' => 'contactForm')) !!}
+            {!! Form::open(array('route' => 'admin.articles.store', 'id' => 'contactForm')) !!}
             <div class="row control-group">
                 <div class="form-group col-xs-12 floating-label-form-group controls">
                     <label for="slug">Título</label>
@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
                 {!! Form::submit('Añadir', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('articles.index') }}" class="btn btn-warning">Cancelar</a>
+                <a href="{{ route('admin.articles.index') }}" class="btn btn-warning">Cancelar</a>
             </div>
 
             {!! Form::close() !!}
@@ -55,7 +55,7 @@
                 if(tag.val().length) {
 
                     $.ajax({
-                        url      : '/tag',
+                        url      : '/admin/tag',
                         headers  : {'X-CSRF-TOKEN' : token},
                         type     : 'POST',
                         datatype : 'json',

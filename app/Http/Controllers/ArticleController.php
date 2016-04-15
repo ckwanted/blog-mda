@@ -15,6 +15,7 @@ class ArticleController extends Controller
     public function __construct() {
 
         $this->middleware('auth');
+        $this->authorize('editor');
     }
     /**
      * Display a listing of the resource.
@@ -52,7 +53,7 @@ class ArticleController extends Controller
 
         $article->update(['user_id' => auth()->user()->id]);
 
-        return redirect('articles/create')->with('message', 'Artículo añadido correctamente');
+        return redirect('admin/articles/create')->with('message', 'Artículo añadido correctamente');
     }
 
     public function addComment($id, Request $request)
