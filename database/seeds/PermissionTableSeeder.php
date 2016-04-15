@@ -56,10 +56,24 @@ class PermissionTableSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
 
+        DB::table('roles')->insert([
+            'slug' => 'editor', 
+            'name' => 'Editor', 
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
         for($i=1; $i <= 10; $i++){
             DB::table('permission_role')->insert([
             'permission_id' => $i, 
             'role_id' => 1, 
+            ]);
+        }
+
+        for($i=11; $i <= 20; $i++){
+            DB::table('permission_role')->insert([
+            'permission_id' => $i, 
+            'role_id' => 2, 
             ]);
         }
     }

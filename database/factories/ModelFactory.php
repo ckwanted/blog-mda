@@ -13,9 +13,9 @@
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
-        'name' => 'Ana Pérez',
-        'email' => 'admin@demo.com',
-        'password' => bcrypt('admin123'),
+        'name' => $faker->name,
+        'email' => $faker->email,
+        'password' => bcrypt('password'),
         'role_id' => 1,
         'remember_token' => str_random(10),
     ];
@@ -27,5 +27,19 @@ $factory->define(App\Article::class, function (Faker\Generator $faker) {
         'title' => $faker->sentence,
         'body' => $faker->paragraph,        
         'image' => 'photo.jpg',        
+    ];
+});
+
+$factory->define(App\Comment::class, function (Faker\Generator $faker) {
+    return [
+        'article_id' => 1,
+        'username' => $faker->name,
+        'body' => $faker->paragraph,        
+    ];
+});
+
+$factory->define(App\Tag::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->city
     ];
 });
