@@ -53,7 +53,18 @@ class ArticleController extends Controller
 
         $article->update(['user_id' => auth()->user()->id]);
 
-        return redirect('admin/articles/create')->with('message', 'Artículo añadido correctamente');
+        /* Imagen*/
+
+        $file = $request->file('file');
+
+        $nombre = $file->getClientOriginalName();
+
+        \Storage::disk('local')->put($nombre,  \File::get($file));
+
+        $article->image = $nombre;
+        $article->save();
+
+        return redirect('admin/articles.')->with('message', 'Artículo añadido correctamente');
     }
 
     public function addComment($id, Request $request)
