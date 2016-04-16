@@ -17,7 +17,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                     	@if(Auth::user())
-                        	<a href="{{ url('admin/users') }}">Dashboard</a>
+                        	<a href="{{ url('admin/dashboard') }}">Dashboard</a>
                     	@else
                         	<a href="{{ url('admin/login') }}">Login</a>
                         @endif

@@ -13,8 +13,7 @@
                     <h3 class="panel-title">Lista de usuarios</h3>
                 </div>
                 <div class="panel-body">
-                    <a href="{{ url('admin/users/create') }}"
-                    >
+                    <a href="{{ url('admin/users/create') }}">
                         <button class="btn-default" type="submit">
                             <i class="fa fa-plus"></i>
                         </button>

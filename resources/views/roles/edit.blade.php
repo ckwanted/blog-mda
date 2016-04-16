@@ -1,5 +1,5 @@
 @extends('app')
-@section('style')
+@section('styles')
     <link href="{{ asset('css/mycss.css') }}" rel="stylesheet"/>
 @stop
 @section('content')
