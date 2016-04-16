@@ -17,6 +17,7 @@ Route::get('/', function () {
 });
 
 
+
 Route::group(['prefix' => 'admin'], function () {
 
 	Route::get('dashboard', function () {
@@ -37,3 +38,5 @@ Route::group(['prefix' => 'admin'], function () {
 });
 Route::post('articles/{id}/comment', 'ArticleController@addComment');
 Route::get('comments', 'CommentController@test');
+
+Route::get('articles/show/{id}', 'ArticleController@show');

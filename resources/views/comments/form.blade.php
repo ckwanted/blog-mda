@@ -3,7 +3,7 @@
         <div class="col-md-10 col-md-offset-1">
             <h4>Agregar un comentario</h4>
 
-            <form action="{{ url('articles/1/comment') }}" method="POST" id="commentForm">
+            <form action="{{ url('articles/'.$article->id.'/comment') }}" method="POST" id="commentForm">
                 {!! csrf_field() !!}
 
                 <div class="row control-group">

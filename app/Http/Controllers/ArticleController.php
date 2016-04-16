@@ -14,8 +14,8 @@ class ArticleController extends Controller
 
     public function __construct() {
 
-        $this->middleware('auth');
-        $this->authorize('editor');
+        //$this->middleware('auth');
+        //$this->authorize('editor');
     }
     /**
      * Display a listing of the resource.
@@ -63,8 +63,7 @@ class ArticleController extends Controller
 
         $article->image = $nombre;
         $article->save();
-
-        return redirect('admin/articles')->with('message', 'Artículo añadido correctamente');
+        return view('articles.show', compact('article'))->with('message', 'Artículo añadido correctamente');
     }
 
     public function addComment($id, Request $request)
@@ -83,7 +82,9 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        //dd(Article::findOrFail($id));
+        $article = Article::findOrFail($id);
+        return view('articles.show', compact('article'));
     }
 
     /**

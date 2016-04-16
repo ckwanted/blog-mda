@@ -1,7 +1,3 @@
-@extends('app')
-
-@section('content')
-
     <div class="row" id="view-comment">
         <div class="col-md-8 col-md-offset-1">
             <span class="label label-default">8 Comentarios</span>
@@ -37,8 +33,6 @@
             </div>
         </div>
     </template>
-
-@endsection
 
 @section('scripts')
     <script src="{{ asset('js/comment.js') }}"></script>
