@@ -3,37 +3,34 @@
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <h4 class="section-heading">Añadir Rol</h4>
-            <form action="{{route('admin.roles.store')}}" method="post" id="contactForm">
-                <input type="hidden" name="_token" value="{{csrf_token()}}">
+            @include('partials.messages')
+            {!! Form::open(array('route' => 'admin.roles.store', 'id' => 'contactForm')) !!}
+
                 <div class="row control-group">
                     <div class="form-group col-xs-12 floating-label-form-group controls">
                         <label for="slug">Slug</label>
-                        <input type="text" id="slug" name="slug" class="form-control" placeholder="Slug">
+                        {!! Form::text('slug', null, ['class' => 'form-control', 'id' => 'slug', 'placeholder' => 'Slug']) !!}
                     </div>
                 </div>
 
                 <div class="row control-group">
                     <div class="form-group col-xs-12 floating-label-form-group controls">
                         <label for="name">Name</label>
-                        <input type="text" id="name" name="name" class="form-control" placeholder="Name">
+                        {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'placeholder' => 'Name']) !!}
                     </div>
                 </div>
-                <h4>Permisos</h4>
-                <ul class="list-unstyled">
-                    @foreach($permissions as $permission)
-                        <li><span><input type="checkbox" name="permission[]" value="{{$permission->id}}"> {{$permission->name}}</span></li>
-                    @endforeach
-                </ul>
+
                 <div class="form-group">
-                    <input type="submit" name="Añadir" value="Añadir" class="btn btn-default">
+                    {!! Form::label('permission_list', 'Permisos:')!!}<br>
+                    {!! Form::select('permission_list[]', $permissions, null, ['class' => 'form-control', 'multiple' => 'multiple']) !!}
+
+                </div>
+                <div class="form-group">
+                    {!! Form::submit('Añadir', ['class' => 'btn btn-primary']) !!}
                     <a href="{{ route('admin.roles.index') }}" class="btn btn-warning">Cancelar</a>
                 </div>
-            </form>
+
+            {!! Form::close() !!}
         </div>
     </div>
-@endsection
-
-@section('scripts')
-
-
 @endsection

@@ -9,11 +9,15 @@
 </head>
 <body>
 
-	@include('partials.navbar-admin')
+	@if (Request::is('admin/*'))
+		@include('partials.navbar-admin')
+	@else
+		@include('partials.navbar-public')
+	@endif
 
     <div class="container">
 
-    	@yield('content', 'Blog MDA')
+    	@yield('content')
     
     </div>
 

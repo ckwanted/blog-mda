@@ -11,12 +11,10 @@ use App\Http\Controllers\Controller;
 
 class RoleController extends Controller
 {
-    /**
-     * RoleController constructor.
-     */
-    public function __construct()
-    {
-        //$this->middleware('auth');
+    public function __construct() {
+
+        $this->middleware('auth');
+        $this->authorize('admin');
     }
 
     /**
@@ -28,9 +26,6 @@ class RoleController extends Controller
     {
         $roles = Role::all();
         return view('roles.index', compact('roles'));
-
-
-        //return view($role);
     }
 
     /**
@@ -40,68 +35,66 @@ class RoleController extends Controller
      */
     public function create()
     {
-       $permissions = Permission::all();
+        $permissions = Permission::lists('name', 'id');
         return view('roles.create', compact('permissions'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-
         $role = Role::create($request->all());
-        $role->permissions()->attach($request->permission);
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
+        $role->permissions()->sync($request->input('permission_list'));
+        return redirect('admin/roles/create')->with('message', 'Rol añadido correctamente');
 
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $role_permission = Role::find($id)->permissions()->lists('permission_id')->toArray();
+        $permissions = Permission::lists('name', 'id');
+
+        return view('roles.edit', compact('permissions', 'role', 'role_permission'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $role->update($request->all());
+        $role->permissions()->sync($request->input('permission_list'));
+
+        return redirect('admin/roles')->with('message', 'Rol modificado correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $role = Role::find($id);
         $role->delete();
-        //return Redirect::route('items.index');
+        return redirect()->back();
+
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Permission;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -26,6 +27,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         parent::registerPolicies($gate);
 
-        //
+        $gate->define('admin', function () {
+            return auth()->user()->roles->slug === 'admin';
+        });
+
+        $gate->define('editor', function () {
+            return auth()->user()->roles->slug === 'editor';
+        });
     }
 }

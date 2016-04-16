@@ -13,7 +13,7 @@
 					<h3 class="panel-title">Lista de Permisos</h3>
 				</div>
 				<div class="panel-body">
-					<table table id="data_table" class="table" cellspacing="0" width="100%">
+					<table id="data_table" class="table" cellspacing="0" width="100%">
 						<thead>
 							<tr>
 						        <th>Slug</th>
