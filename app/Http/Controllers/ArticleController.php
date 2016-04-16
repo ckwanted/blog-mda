@@ -64,7 +64,7 @@ class ArticleController extends Controller
         $article->image = $nombre;
         $article->save();
 
-        return redirect('admin/articles.')->with('message', 'Artículo añadido correctamente');
+        return redirect('admin/articles')->with('message', 'Artículo añadido correctamente');
     }
 
     public function addComment($id, Request $request)

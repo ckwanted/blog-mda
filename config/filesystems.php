@@ -45,7 +45,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root'   => public_path().'/images', /* Línea modificada para el almacenamiento de la imagen*/
+            'root'   => public_path().'/img/articles', /* Línea modificada para el almacenamiento de la imagen*/
         ],
 
         'ftp' => [
