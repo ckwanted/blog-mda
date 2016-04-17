@@ -19,7 +19,7 @@
                     	@if(Auth::user())
                         	<a href="{{ url('admin/dashboard') }}">Dashboard</a>
                     	@else
-                        	<a href="{{ url('admin/login') }}">Login</a>
+                        	<a href="{{ url('login') }}">Login</a>
                         @endif
                     </li>
                 </ul>

@@ -12,11 +12,6 @@ use App\Http\Controllers\Auth;
 class ArticleController extends Controller
 {
 
-    public function __construct() {
-
-        //$this->middleware('auth');
-        //$this->authorize('editor');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -34,6 +29,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
+        $this->authorize('editor');
+
         $tags = Tag::all();
         return view('articles.create', compact('tags'));
     }
@@ -46,6 +43,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('editor');
 
         $article = Article::create($request->all());
 
@@ -68,6 +66,8 @@ class ArticleController extends Controller
 
     public function addComment($id, Request $request)
     {
+        $this->authorize('editor');
+
         $article = Article::findOrFail($id);
 
         return $article->assignComment($request->all());
@@ -82,8 +82,8 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //dd(Article::findOrFail($id));
         $article = Article::findOrFail($id);
+        
         return view('articles.show', compact('article'));
     }
 

@@ -1,10 +1,12 @@
 @extends('app')
+
 @section('content')
     <div class="row">
         <div class="col-md-offset-1 col-md-10">
             <h1>{{ $article->title }}</h1>
             <hr>
             <h3>Autor: <span class="lead"> {{ $article->user->name }}</span></h3>
+            <small>{{ $article->published }}</small>
 
             <div class="text-justify">
                 <img src="/img/articles/{{ $article->image }}" id="art-img" class="img-rounded col-xs-12 col-md-5">
@@ -15,7 +17,7 @@
 
             <div class="well nt col-md-12" id="tags">
                 @foreach( $article->tags as $tags)
-                    #<a href="#">{{ $tags->name }}</a>
+                    #<span class="label label-success"><a href="#">{{ $tags->name }}</a></span>
                 @endforeach
             </div>
 

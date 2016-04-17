@@ -33,4 +33,9 @@ class Article extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function getPublishedAttribute()
+    {
+        return $this->created_at->diffForHumans();
+    }
+
 }
