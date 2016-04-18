@@ -19,8 +19,12 @@ class ArticleController extends Controller
      */
     public function index()
     {
+        $this->authorize('editor');
+        
         $articles = Article::all();
-        return view('articles.index',compact('articles'));
+
+        return view('articles.index', compact('articles'));
+
     }
 
     /**
