@@ -34,5 +34,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 	Route::resource('permissions','PermissionController', ['only' => ['index', 'edit', 'update']]);
     Route::resource('users','UserController');
 	Route::resource('articles','ArticleController');
-	Route::post('tag', 'TagController@store');
+	Route::resource('tags','TagController');
+
 });

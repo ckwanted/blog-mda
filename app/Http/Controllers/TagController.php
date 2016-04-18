@@ -15,25 +15,49 @@ class TagController extends Controller {
         $this->authorize('editor');
     }
 
+    public function index()
+    {
+        $tags = Tag::all();
+        return view('tags.index',compact('tags'));
+    }
+
+    public function create() {
+        return view('tags.create');
+    }
+
     public function store(Request $request) {
 
-        if($request->ajax()) {
-            return response()->json([
-                'ok' => $this->addTag($request->tag)
-            ]);
-        }
+        $existe = Tag::all()->where('name', $request->name)->count();
+
+        if($existe) return redirect()->back()->withErrors("El Tag ya existe ....");
+
+        $newTag = new Tag();
+        $newTag->name = $request->name;
+        $newTag->save();
+        return redirect('admin/tags')->with('message', 'Tag añadido correctamente');
 
     }
 
-    private function addTag($tag) {
-        $existe = Tag::all()->where('name', $tag)->count();
+    public function edit($id)
+    {
+        $tag = Tag::findOrFail($id);
 
-        if($existe) return null;
+        return view('tags.edit', compact('tag'));
+    }
 
-        $newTag = new Tag();
-        $newTag->name = $tag;
-        $newTag->save();
-        return $newTag->toArray();
+    public function update(Request $request, $id)
+    {
+        $tag = Tag::find($id);
+        $tag->name = $request->name;
+        $tag->save();
+        return redirect('/admin/tags');
+    }
+
+    public function destroy($id)
+    {
+        Tag::destroy($id);
+
+        return redirect('/admin/tags');
     }
 
 }
