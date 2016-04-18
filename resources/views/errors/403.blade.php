@@ -14,6 +14,6 @@
 <div class="container">
     <div class="well well-middle">
         <h3 class="text-danger center">Opss!! No esta autorizado a ver esta página</h3>
-        <a class="btn btn-default" href="{{ url('/') }}" role="button">Atrás</a>
+        <a class="btn btn-default" href="{{ url('admin/dashboard') }}" role="button">Atrás</a>
     </div>
 </div>

@@ -12,8 +12,10 @@
 */
 
 Route::get('/', function () {
+	
+	$articles = App\Article::all();
 
-    return view('app');
+    return view('articles.show-articles', compact('articles'));
 });
 
 Route::get('login', 'Auth\AuthController@getLogin');
