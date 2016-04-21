@@ -14,7 +14,7 @@ $(function(){
             type: $(formId).attr('method'),
             data: $(formId).serialize(),
             dataType: 'html',
-            success: function(result){
+            success: function(){
                 $(formId)[0].reset();
             },
             error: function(){
@@ -25,12 +25,30 @@ $(function(){
 
 });
 
-/*Vue.component('comments', {
-    template: '#comments-template'
+Vue.component('comments', {
+    template: '#comments-template',
+
+    props: ['article_id'],
+
+    data: function () {
+        return { list: [] }
+    },
+
+    created: function() {
+        this.fetchComments(this.article_id);
+
+    },
+
+    methods: {
+        fetchComments: function (id) {
+            $.getJSON(id+'/comments', function (comments) {
+                this.list = comments;
+            }.bind(this))
+        }
+    }
+
 });
 
-
-/*new Vue({
-    el: '#view-comment',
-
-});*/
+new Vue({
+    el: '#view-comment'
+});

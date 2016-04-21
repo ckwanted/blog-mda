@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
 	
-	$articles = App\Article::all();
+	$articles = App\Article::orderBy('created_at', 'desc')->get();
 
     return view('articles.show-articles', compact('articles'));
 });
@@ -23,6 +23,7 @@ Route::post('login', 'Auth\AuthController@postLogin');
 Route::post('articles/{id}/comment', 'ArticleController@addComment');
 Route::get('comments', 'CommentController@test');
 Route::get('articles/show/{id}', 'ArticleController@show');
+Route::get('articles/show/{id}/comments', 'CommentController@index');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 

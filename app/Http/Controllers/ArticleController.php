@@ -71,7 +71,6 @@ class ArticleController extends Controller
 
     public function addComment($id, Request $request)
     {
-        $this->authorize('editor');
 
         $article = Article::findOrFail($id);
 
