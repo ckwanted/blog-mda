@@ -25,10 +25,7 @@
             </div>
             <div class="form-group">
 
-                <label>Tags:
-                    <input type="button" class="btn-sm btn-info" data-toggle="modal" data-target="#modalTag"
-                           value="Añadir Tag"/>
-                </label>
+                <label>Tags:</label>
 
                 <select id="tag_list" class="form-control" name="tag_list[]" multiple="multiple">
                     @foreach($tags as $tag)
@@ -47,46 +44,4 @@
     </div>
 
     @include('partials.new-tag')
-@endsection
-
-@section('scripts')
-    <script>
-        $(function () {
-
-            $("#newTag").click(function () {
-
-                var tag = $(this).parent().prev().find("input");
-                var token = $("#contactForm").find("input").val();
-
-                if (tag.val().length) {
-
-                    $.ajax({
-                        url: '/admin/tag',
-                        headers: {'X-CSRF-TOKEN': token},
-                        type: 'POST',
-                        datatype: 'json',
-                        data: {'tag': tag.val()}
-                    }).success(function (response) {
-
-                        var msj = null;
-
-                        if (response.ok != null) {
-                            msj = $('<div class="alert alert-success" role="alert">Tag creado correctamente ...</div>');
-                            tag.val("");
-                            $("#tag_list").append("<option value=" + response.ok.id + ">" + response.ok.name + "</option>");
-                        }
-                        else {
-                            msj = $('<div class="alert alert-danger" role="alert">El tag ya existe ...</div>');
-                        }
-                        tag.before(msj);
-                        msj.delay(3000).fadeOut(300);
-
-                    });
-
-                }
-
-            });
-
-        });
-    </script>
 @endsection

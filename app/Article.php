@@ -29,8 +29,23 @@ class Article extends Model
         $this->comments()->create($comment);
     }
 
-    public function tags() {
+    public function tags() 
+    {
         return $this->belongsToMany(Tag::class);
     }
 
+    public function getPublishedAttribute()
+    {
+        return $this->created_at->diffForHumans();
+    }
+
+    public function getSummaryAttribute()
+    {
+        return str_limit($this->body, 200);
+    }
+
+    public function getCountCommentsAttribute()
+    {
+        return $this->comments->count();
+    }
 }
