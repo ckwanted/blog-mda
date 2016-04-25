@@ -22,7 +22,7 @@ class ArticleController extends Controller
     {
         $this->authorize('editor');
         
-        $articles = Article::all();
+        $articles = Article::all()->where('user_id', auth()->user()->id);
 
         return view('articles.index', compact('articles'));
 
