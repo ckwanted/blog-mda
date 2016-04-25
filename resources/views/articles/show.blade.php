@@ -16,9 +16,14 @@
             </div>
 
             <div class="well nt col-md-12" id="tags">
-                @foreach( $article->tags as $tags)
-                    #<span class="label label-success"><a href="#">{{ $tags->name }}</a></span>
+
+                @foreach( $article->tags as $tag)
+                    <form action="{{url('articles/search')}}" method="POST">
+                        {{csrf_field()}}
+                                <button type="submit" name='tag' value='{{$tag->name}}' class="label label-info tag"># {{ $tag->name }}</button>
+                    </form>
                 @endforeach
+
             </div>
 
         </div>

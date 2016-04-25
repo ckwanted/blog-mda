@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tag;
+use Illuminate\Cache\TagSet;
 use Illuminate\Http\Request;
 use App\Article;
 use App\Http\Requests;
@@ -34,7 +35,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $this->authorize('editor');
+        //$this->authorize('editor');
 
         $tags = Tag::all();
         return view('articles.create', compact('tags'));
@@ -50,6 +51,7 @@ class ArticleController extends Controller
     {
         $this->authorize('editor');
 
+
         $article = Article::create($request->all());
 
         if($request->tag_list) $article->tags()->sync($request->input('tag_list'));
@@ -59,7 +61,6 @@ class ArticleController extends Controller
         /* Imagen*/
 
         $file = $request->file('file');
-
         $nombre = $file->getClientOriginalName();
 
         \Storage::disk('local')->put($nombre,  \File::get($file));
@@ -124,4 +125,24 @@ class ArticleController extends Controller
     {
         //
     }
+
+
+
+    /*public function search(Request $request)
+    {
+        // Gets the query string from our form submission
+        $query = Request::input('search');
+        // Returns an array of articles that have the query string located somewhere within
+        // our articles titles. Paginates them so we can break up lots of search results.
+        $articles = DB::table('articles')->where('title', 'LIKE', '%' . $query . '%')->paginate(10);
+
+        // returns a view and passes the view the list of articles and the original query.
+        return view('articles.search', compact('articles', 'query'));
+    }*/
+
+    public function search (Request $request){
+        //dd($request->all());
+         $tag = Tag::where('name', $request->tag)->get()->first();
+         return view('articles.search', compact('tag'));
+     }
 }

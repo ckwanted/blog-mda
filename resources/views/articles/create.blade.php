@@ -8,19 +8,19 @@
             <div class="row control-group">
                 <div class="form-group col-xs-12 floating-label-form-group controls">
                     <label for="title">Título</label>
-                    {!! Form::text('title', null, ['class' => 'form-control', 'id' => 'title', 'placeholder' => 'Título']) !!}
+                    {!! Form::text('title', null, ['class' => 'form-control', 'id' => 'title', 'placeholder' => 'Título', 'required']) !!}
                 </div>
             </div>
             <div class="row control-group">
                 <div class="form-group col-xs-12 floating-label-form-group controls">
                     <label for="name">Contenido</label>
-                    {!! Form::textarea('body', null, ['class' => 'form-control', 'id' => 'body', 'placeholder' => 'Contenido']) !!}
+                    {!! Form::textarea('body', null, ['class' => 'form-control', 'id' => 'body', 'placeholder' => 'Contenido', 'required']) !!}
                 </div>
             </div>
             <div class="row control-group">
                 <div class="form-group col-xs-12">
                     <label for="file">Imagen:</label>
-                    {!! Form::file('file', null) !!}
+                    {!! Form::file('file', null, ['required']) !!}
                 </div>
             </div>
             <div class="form-group">

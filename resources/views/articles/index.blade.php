@@ -43,7 +43,7 @@
                                         </button>
                                     </a>
                                     <form action="{{ route('admin.articles.destroy', $article->id) }}" method="POST"
-                                          style="display: inline-block">
+                                                                              style="display: inline-block">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE"/>
                                         <button class="btn-danger" type="submit">

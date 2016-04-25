@@ -11,13 +11,14 @@
 
 	@if (Request::is('admin/*'))
 		@include('partials.navbar-admin')
-	@else
+    @else
 		@include('partials.navbar-public')
 	@endif
 
+    @include('partials.search',['url'=>'articles','link'=>'articles'])
     <div class="container">
         
-    	@yield('content')
+    	    @yield('content')
         
     </div>
 

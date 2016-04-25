@@ -10,16 +10,6 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-<<<<<<< HEAD
-                    <h3 class="panel-title">Lista de Roles</h3>
-                </div>
-                <div class="panel-body">
-                    <table table id="data_table" class="table" cellspacing="0" width="100%">
-                        <thead>
-                        <tr>
-                            <th>Slug</th>
-                            <th>Nombre</th>
-=======
                     <h3 class="panel-title">Lista de roles</h3>
                 </div>
                 <div class="panel-body">
@@ -35,29 +25,14 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Permiso</th>
->>>>>>> b30506c6231ac9c5451b13335ea60e9d3d49090b
                             <th>Acciones</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($roles as $role)
                             <tr>
-<<<<<<< HEAD
-                                <td>{{ $role->slug }}</td>
                                 <td>{{ $role->name }}</td>
-                                <td>
-                                    {{--<div class="btn-group">
-                                        <a href="{{ url('admin/permissions/'. $permission->id . '/edit') }}" class="btn btn-default">
-                                            <span class="fa fa-pencil"></span>
-                                        </a>
-                                    </div>--}}
-=======
-                                <td>{{ $role->name }}</td>
-                                <td>
-                                @foreach($role->permissions as $permission)
-                                    <li>{{ $permission->name }}</li>
-                                @endforeach
-                                </td>
+                                <td>{{ $role->email }}</td>
                                 <td>
 
                                     <a href="{{ url('admin/roles/'. $role->id . '/edit') }}"
@@ -74,7 +49,6 @@
                                             <i class="fa fa-trash-o"></i>
                                         </button>
                                     </form>
->>>>>>> b30506c6231ac9c5451b13335ea60e9d3d49090b
                                 </td>
                             </tr>
                         @endforeach
@@ -90,15 +64,9 @@
 @section('scripts')
     <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
     <script>
-<<<<<<< HEAD
-        $(document).ready(function() {
-            $('#data_table').DataTable();
-        } );
-=======
         $(document).ready(function () {
             $('#data_table').DataTable();
         });
->>>>>>> b30506c6231ac9c5451b13335ea60e9d3d49090b
     </script>
 
 @endsection
