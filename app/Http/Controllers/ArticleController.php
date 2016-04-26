@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Tag;
 use Illuminate\Cache\TagSet;
 use Illuminate\Http\Request;
@@ -121,10 +122,10 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($article_id)
     {
-        Article::destroy($id);
-
+        Comment::where('article_id', $article_id)->delete();
+        Article::destroy($article_id);
         return redirect('/admin/articles');
     }
 
