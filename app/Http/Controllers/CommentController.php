@@ -21,6 +21,18 @@ class CommentController extends Controller
         return response()->json($comments);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function list()
+    {
+        $comments = Comment::all();
+
+        return view('comments.index', compact('comments'));
+    }
+
     
     /**
      * Remove the specified resource from storage.

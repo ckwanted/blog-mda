@@ -33,6 +33,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 	Route::resource('users','UserController');
 	Route::resource('articles','ArticleController');
 	Route::resource('tags','TagController');
+    Route::get('comments', 'CommentController@list');
+    Route::delete('comments/{id}', 'CommentController@destroy')->name('admin.comments.destroy');
 });
 
 Route::post('articles/search/', ['as' => 'search', 'uses' => 'ArticleController@search']);

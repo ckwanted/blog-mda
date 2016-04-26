@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
 use App\Tag;
-use Illuminate\Cache\TagSet;
 use Illuminate\Http\Request;
 use App\Article;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -129,28 +129,20 @@ class ArticleController extends Controller
      */
     public function destroy($article_id)
     {
-        Comment::where('article_id', $article_id)->delete();
-        Article::destroy($article_id);
+        $article = Article::find($article_id);
+        if ($this->existImage($article)) Storage::delete($article->image);
+        $article->comments()->delete();
+        $article->delete();
         return redirect('/admin/articles');
     }
 
-
-
-    /*public function search(Request $request)
-    {
-        // Gets the query string from our form submission
-        $query = Request::input('search');
-        // Returns an array of articles that have the query string located somewhere within
-        // our articles titles. Paginates them so we can break up lots of search results.
-        $articles = DB::table('articles')->where('title', 'LIKE', '%' . $query . '%')->paginate(10);
-
-        // returns a view and passes the view the list of articles and the original query.
-        return view('articles.search', compact('articles', 'query'));
-    }*/
-
     public function search (Request $request){
-        //dd($request->all());
          $tag = Tag::where('name', $request->tag)->get()->first();
          return view('articles.search', compact('tag'));
      }
+
+    private function existImage($article)
+    {
+        return File::exists(Config::get('filesystems.disks.local.root').'/'.$article->image);
+    }
 }
