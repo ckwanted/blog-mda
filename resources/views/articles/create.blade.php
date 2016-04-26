@@ -20,7 +20,7 @@
             <div class="row control-group">
                 <div class="form-group col-xs-12">
                     <label for="file">Imagen:</label>
-                    {!! Form::file('file', null, ['required']) !!}
+                    <input type="file" name="file" required/>
                 </div>
             </div>
             <div class="form-group">
