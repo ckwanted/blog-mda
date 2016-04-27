@@ -1,6 +1,6 @@
     <div class="row" id="view-comment">
         <div class="col-md-8 col-md-offset-1">
-            <span class="label label-default">8 Comentarios</span>
+            <span class="label label-default">{{ $article->count_comments }} Comentarios</span>
             <div class="panel panel-default">
                 <div class="panel-body">
                     @include('comments.form')
