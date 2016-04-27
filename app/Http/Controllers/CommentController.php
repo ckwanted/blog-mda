@@ -35,13 +35,15 @@ class CommentController extends Controller
 
     
     /**
-     * Remove the specified resource from storage.
+     * Eliminar un comentario
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        Comment::destroy($id);
+
+        return redirect('admin/comments');
     }
 }
